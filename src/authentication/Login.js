@@ -1,4 +1,4 @@
-import "./App.css";
+
 import React, { useState, useEffect } from "react";
 import Identity from "@arc-publishing/sdk-identity";
 
@@ -6,6 +6,7 @@ function Login({ handleLogged, handleShowRegister, handleShowOlvide }) {
   const urlBase = "https://api-sandbox.elcomercio.pe";
   const [error, setError] = useState(false);
   const [dataLogin, setDataLogin] = useState({
+
     emailLogin: "",
     passLogin: "",
   });
