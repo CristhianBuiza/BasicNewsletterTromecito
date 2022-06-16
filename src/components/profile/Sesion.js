@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from "react";
 import Identity from "@arc-publishing/sdk-identity";
 import Perfil from "../profile/Perfil";
-import Login from "../../authentication/Login";
-import OlvidePass from "../../authentication/OlvidePass";
-import Registro from "../../authentication/Registro";
+import Login from "../../services/Login";
+import OlvidePass from "../../services/OlvidePass";
+import Registro from "../../services/Registro";
 import LoginPage from "../../Pages/LoginPage";
 const Sesion = () => {
     const urlBase = "https://api-sandbox.elcomercio.pe";

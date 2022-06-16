@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
 import LoginPage from "./Pages/LoginPage";
 import PerfilPage from "./Pages/PerfilPage";
-import Cabeceras from "./Pages/Cabeceras";
+
 // import Login from "./Login";
 // import Registro from "./Registro";
 // import OlvidePass from "./OlvidePass";
