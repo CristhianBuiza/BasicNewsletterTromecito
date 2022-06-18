@@ -10,14 +10,21 @@ import PerfilPage from "./Pages/PerfilPage";
 // import Registro from "./Registro";
 // import OlvidePass from "./OlvidePass";
 
+import About from "./Pages/About";
+import PageWrapper from "./components/PageWrapper";
+import Home from "./Pages/Home";
+import NotFound from "./Pages/NotFound";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<><PageWrapper><Home /></PageWrapper></>} />
+        <Route path="/home" element={<><PageWrapper><Home /></PageWrapper></>} />
+        <Route path="/about" element={<><PageWrapper><About/></PageWrapper></>} />
+        <Route path="*" element={<><PageWrapper><NotFound/></PageWrapper></>}></Route>
+        <Route path="/login" element={<LoginPage/>}/>
         <Route path="/profile" element={<PerfilPage />} />
       </Routes>
     </BrowserRouter>

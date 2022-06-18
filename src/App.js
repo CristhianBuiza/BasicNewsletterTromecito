@@ -3,7 +3,7 @@ import Sesion from "./components/profile/Sesion";
 function App() {
   return (
     <div className="App">
-      <Sesion />
+      {/*<Sesion />*/}
     </div>
   );
 }
