@@ -12,7 +12,7 @@ import PerfilPage from "./Pages/PerfilPage";
 
 import About from "./Pages/About";
 import PageWrapper from "./components/PageWrapper";
-import Home from "./Pages/Home";
+import Body from "./Pages/Body";
 import NotFound from "./Pages/NotFound";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -20,8 +20,8 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<><PageWrapper><Home /></PageWrapper></>} />
-        <Route path="/home" element={<><PageWrapper><Home /></PageWrapper></>} />
+        <Route path="/" element={<><PageWrapper><Body /></PageWrapper></>} />
+        <Route path="/home" element={<><PageWrapper><Body /></PageWrapper></>} />
         <Route path="/about" element={<><PageWrapper><About/></PageWrapper></>} />
         <Route path="*" element={<><PageWrapper><NotFound/></PageWrapper></>}></Route>
         <Route path="/login" element={<LoginPage/>}/>
