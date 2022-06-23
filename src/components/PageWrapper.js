@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import Footer from '../Pages/Footer';
-import {useState} from 'react';
 import  '../styled-components/pagewrapper.css';
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -10,6 +9,18 @@ import {faBars} from '@fortawesome/free-solid-svg-icons';
 
 
 const PageWrapper = ({children}) => {
+
+    const [style, setStyle] = useState("");
+    
+    const changeStyle = () => {
+        console.log("hello");
+        setStyle("cerrar");
+    }
+    const changeNav = () => {
+        setStyle("abrir");
+    }
+
+
   return (
     <>
     <header className="navigation-content">
@@ -21,13 +32,13 @@ const PageWrapper = ({children}) => {
         <nav className="navigation-nav">
 
                     <input type="checkbox" id="check"/>
-                    <label htmlFor="check" className="checkLabel">
+                    <label htmlFor="check" className="checkLabel" onClick={changeNav}>
                             <FontAwesomeIcon  icon={faBars} />
                     </label>
 
-                <ul className="navigation-links">
-                    <li><Link className="navigation-link" to="/home">Home</Link></li>
-                    <li><Link className="navigation-link" to="/about" >About</Link></li>
+                <ul className={"navigation-links " + style}>
+                    <li onClick={changeStyle}><Link className="navigation-link" to="/home">Home</Link></li>
+                    <li onClick={changeStyle}><Link className="navigation-link" to="/about" >About</Link></li>
                     <li><span className="icono"><span className="navigation-link" to="/login" ><FontAwesomeIcon  icon={faUser} /></span></span>
                         <ul className="submenu">
                             <li><Link className="navigation-link" to="/login">Ingresar</Link></li>
