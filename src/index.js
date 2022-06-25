@@ -17,7 +17,7 @@ import NotFound from "./Pages/NotFound";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<><PageWrapper><Body /></PageWrapper></>} />
@@ -28,7 +28,7 @@ root.render(
         <Route path="/profile" element={<PerfilPage />} />
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>
+ 
 );
 
 
