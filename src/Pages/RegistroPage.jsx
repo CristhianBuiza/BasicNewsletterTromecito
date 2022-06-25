@@ -1,37 +1,32 @@
 import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Identity from "@arc-publishing/sdk-identity";
+import useUser from "../hooks/useUser";
 
-function PerfilPage() {
+function RegistroPage() {
+  const urlBase = "https://api-sandbox.elcomercio.pe";
   const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [dataRegistro, setDataRegistro] = useState({});
+  const navigate = useNavigate();
+  const { isLogged, login } = useUser();
+  useEffect(() => {
+    if (isLogged) {
+      navigate("/home");
+    }
+  }, [isLogged]);
+  const [dataRegistro, setDataRegistro] = useState({
+    emailRegistro: "",
+    passRegistro: "",
+    nombresRegistro: "",
+    apepaternoRegistro: "",
+    apematernoRegistro: "",
+    telRegistro: "",
+    tipdocRegistro: "",
+    numdocRegistro: "",
+  });
 
   useEffect(() => {
-    Identity.getUserProfile().then((res) => {
-      const {
-        email,
-        firstName,
-        lastName,
-        secondLastName,
-        contacts,
-        attributes,
-      } = res;
-
-      const phonUser = contacts[0].phone;
-      const tipDocUser = attributes[0].value;
-      const numDocUser = attributes[1].value;
-
-      setDataRegistro({
-        emailRegistro: email,
-        nombresRegistro: firstName,
-        apepaternoRegistro: lastName,
-        apematernoRegistro: secondLastName,
-        telRegistro: phonUser,
-        tipdocRegistro: tipDocUser,
-        numdocRegistro: numDocUser,
-      });
-    });
-  }, [setDataRegistro]);
+    Identity.apiOrigin = urlBase;
+  });
 
   const handleInput = (event) => {
     const { value, name } = event.target;
@@ -43,6 +38,8 @@ function PerfilPage() {
 
   const handleSubmit = () => {
     const {
+      emailRegistro,
+      passRegistro,
       nombresRegistro,
       apepaternoRegistro,
       apematernoRegistro,
@@ -50,67 +47,68 @@ function PerfilPage() {
       tipdocRegistro,
       numdocRegistro,
     } = dataRegistro;
-    Identity.updateUserProfile({
-      firstName: nombresRegistro,
-      lastName: apepaternoRegistro,
-      secondLastName: apematernoRegistro,
-      contacts: [
-        {
-          phone: telRegistro,
-          type: "HOME",
-        },
-      ],
-      attributes: [
-        {
-          name: "typeDocument",
-          value: tipdocRegistro,
-          type: "String",
-        },
-        {
-          name: "document",
-          value: numdocRegistro,
-          type: "String",
-        },
-      ],
-    })
+    Identity.signUp(
+      {
+        userName: emailRegistro,
+        credentials: passRegistro,
+        password: "password",
+      },
+      {
+        firstName: nombresRegistro,
+        lastName: apepaternoRegistro,
+        secondLastName: apematernoRegistro,
+        displayName: emailRegistro,
+        email: emailRegistro,
+        contacts: [
+          {
+            phone: telRegistro,
+            type: "HOME",
+          },
+        ],
+        attributes: [
+          {
+            name: "typeDocument",
+            value: tipdocRegistro,
+            type: "String",
+          },
+          {
+            name: "document",
+            value: numdocRegistro,
+            type: "String",
+          },
+        ],
+      }
+    )
       .then((res) => {
-        console.log(res);
-        setSuccess("Tus datos han sido guardados correctamente!");
+        login(emailRegistro, passRegistro);
       })
       .catch((error) => {
         setError(error.message);
       });
   };
 
-  const {
-    emailRegistro,
-    nombresRegistro,
-    apepaternoRegistro,
-    apematernoRegistro,
-    telRegistro,
-    tipdocRegistro,
-    numdocRegistro,
-  } = dataRegistro;
-
   return (
     <div className="App">
       <header className="App-header">
-        <p>Bienvenido a tu Perfil</p>
+        <p>Registro</p>
       </header>
       <section>
         <form>
           {error && <p className="alert">{error}</p>}
-
-          {success && <p className="success">{success}</p>}
-
           <input
             type="email"
             name="emailRegistro"
             placeholder="Ingresa Correo"
             required
             onChange={handleInput}
-            value={emailRegistro}
-            disabled
+          />
+          <br />
+          <input
+            type="password"
+            name="passRegistro"
+            placeholder="Ingresa Contraseña"
+            required
+            onChange={handleInput}
           />
           <br />
 
@@ -120,7 +118,6 @@ function PerfilPage() {
             placeholder="Ingresa Nombres"
             required
             onChange={handleInput}
-            value={nombresRegistro}
           />
           <br />
 
@@ -130,7 +127,6 @@ function PerfilPage() {
             placeholder="Ingresa Apellido Paterno"
             required
             onChange={handleInput}
-            value={apepaternoRegistro}
           />
           <br />
 
@@ -140,7 +136,6 @@ function PerfilPage() {
             placeholder="Ingresa tus Apellidos Materno"
             required
             onChange={handleInput}
-            value={apematernoRegistro}
           />
 
           <br />
@@ -151,7 +146,6 @@ function PerfilPage() {
             placeholder="Ingresa Teléfono"
             required
             onChange={handleInput}
-            value={telRegistro}
           />
           <br />
           <input
@@ -160,7 +154,6 @@ function PerfilPage() {
             placeholder="Ingresa Tipo Documento"
             required
             onChange={handleInput}
-            value={tipdocRegistro}
           />
 
           <br />
@@ -171,21 +164,15 @@ function PerfilPage() {
             placeholder="Ingresa tus Número Documento"
             required
             onChange={handleInput}
-            value={numdocRegistro}
           />
           <br />
           <button type="button" name="btnlogin" onClick={handleSubmit}>
-            Actualizar Datos
+            Registrarme
           </button>
-
-          <br />
-          <a href="#" className="link" onClick={console.log("cerrar")}>
-            Cerrar Sesion
-          </a>
         </form>
       </section>
     </div>
   );
 }
 
-export default PerfilPage;
+export default RegistroPage;
