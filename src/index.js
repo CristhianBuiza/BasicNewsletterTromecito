@@ -30,16 +30,7 @@ root.render(
             </>
           }
         />
-        <Route
-          path="/home"
-          element={
-            <>
-              <PageWrapper>
-                <Body />
-              </PageWrapper>
-            </>
-          }
-        />
+
         <Route
           path="/about"
           element={

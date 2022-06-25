@@ -1,9 +1,14 @@
+
 import React, { useState, useEffect } from "react";
 
 import NewsMain from "../components/NewsMain";
 import NewsRelated from "../components/NewsRelated";
 import NewsList from "../components/NewsList";
-
+import "../styled-components/body.css";
+const Body = () => {
+  useEffect(() => {
+    document.title = "Tromecito";
+  }, []);
 import "../styled-components/body.css";
 
 import { helpHttp } from "../components/helpers/helpHttp";
@@ -42,6 +47,13 @@ const Body = () => {
     <div className="container-main">
       <div className="container">
         <div className="row">
+
+          <NewsMain></NewsMain>
+          <div className="conten-newsrelated">
+            <NewsRelated></NewsRelated>
+            <NewsRelated></NewsRelated>
+            <NewsRelated></NewsRelated>
+
           {db == "" ? <Loader /> : <NewsMain data={db} />}
           <div className="conten-newsrelated">
             {db == "" ? (
@@ -53,6 +65,7 @@ const Body = () => {
                 <NewsRelated data={db.articles[3]} />
               </>
             )}
+
           </div>
         </div>
 

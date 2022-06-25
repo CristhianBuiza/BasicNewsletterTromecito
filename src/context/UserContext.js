@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 const Context = React.createContext();
 export function UserContextProvider({ children }) {
-  const [jwt, setJwt] = useState(() => window.sessionStorage.getItem("jwt"));
+  const [isLogged, setIsLogged] = useState(false);
   return (
-    <Context.Provider value={{ jwt, setJwt }}>{children}</Context.Provider>
+    <Context.Provider value={{ isLogged, setIsLogged }}>
+      {children}
+    </Context.Provider>
   );
 }
 

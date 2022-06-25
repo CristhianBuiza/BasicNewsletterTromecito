@@ -9,8 +9,11 @@ function RegistroPage() {
   const navigate = useNavigate();
   const { isLogged, login } = useUser();
   useEffect(() => {
+    document.title = "Registro | Tromecito";
+  }, []);
+  useEffect(() => {
     if (isLogged) {
-      navigate("/home");
+      navigate("/");
     }
   }, [isLogged]);
   const [dataRegistro, setDataRegistro] = useState({
@@ -88,89 +91,94 @@ function RegistroPage() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>Registro</p>
-      </header>
-      <section>
-        <form>
-          {error && <p className="alert">{error}</p>}
-          <input
-            type="email"
-            name="emailRegistro"
-            placeholder="Ingresa Correo"
-            required
-            onChange={handleInput}
-          />
-          <br />
-          <input
-            type="password"
-            name="passRegistro"
-            placeholder="Ingresa Contraseña"
-            required
-            onChange={handleInput}
-          />
-          <br />
+    <div className="login">
+      <div className="login-screen">
+        <header className="app-title">
+          <h1>Registro</h1>
+        </header>
+        <section>
+          <form>
+            {error && <p className="alert">{error}</p>}
+            <input
+              type="email"
+              name="emailRegistro"
+              placeholder="Ingresa Correo"
+              required
+              onChange={handleInput}
+            />
+            <br />
+            <input
+              type="password"
+              name="passRegistro"
+              placeholder="Ingresa Contraseña"
+              required
+              onChange={handleInput}
+            />
+            <br />
 
-          <input
-            type="text"
-            name="nombresRegistro"
-            placeholder="Ingresa Nombres"
-            required
-            onChange={handleInput}
-          />
-          <br />
+            <input
+              type="text"
+              name="nombresRegistro"
+              placeholder="Ingresa Nombres"
+              required
+              onChange={handleInput}
+            />
+            <br />
 
-          <input
-            type="text"
-            name="apepaternoRegistro"
-            placeholder="Ingresa Apellido Paterno"
-            required
-            onChange={handleInput}
-          />
-          <br />
+            <input
+              type="text"
+              name="apepaternoRegistro"
+              placeholder="Ingresa Apellido Paterno"
+              required
+              onChange={handleInput}
+            />
+            <br />
 
-          <input
-            type="text"
-            name="apematernoRegistro"
-            placeholder="Ingresa tus Apellidos Materno"
-            required
-            onChange={handleInput}
-          />
+            <input
+              type="text"
+              name="apematernoRegistro"
+              placeholder="Ingresa tus Apellidos Materno"
+              required
+              onChange={handleInput}
+            />
 
-          <br />
+            <br />
 
-          <input
-            type="text"
-            name="telRegistro"
-            placeholder="Ingresa Teléfono"
-            required
-            onChange={handleInput}
-          />
-          <br />
-          <input
-            type="text"
-            name="tipdocRegistro"
-            placeholder="Ingresa Tipo Documento"
-            required
-            onChange={handleInput}
-          />
+            <input
+              type="text"
+              name="telRegistro"
+              placeholder="Ingresa Teléfono"
+              required
+              onChange={handleInput}
+            />
+            <br />
+            <input
+              type="text"
+              name="tipdocRegistro"
+              placeholder="Ingresa Tipo Documento"
+              required
+              onChange={handleInput}
+            />
 
-          <br />
+            <br />
 
-          <input
-            type="text"
-            name="numdocRegistro"
-            placeholder="Ingresa tus Número Documento"
-            required
-            onChange={handleInput}
-          />
-          <br />
-          <button type="button" name="btnlogin" onClick={handleSubmit}>
-            Registrarme
-          </button>
-        </form>
-      </section>
+            <input
+              type="text"
+              name="numdocRegistro"
+              placeholder="Ingresa tus Número Documento"
+              required
+              onChange={handleInput}
+            />
+            <br />
+            <button type="button" name="btnlogin" onClick={handleSubmit}>
+              Registrarme
+            </button>
+            <Link className="login-link" to="/">
+              Regresar a inicio
+            </Link>
+          </form>
+        </section>
+      </div>
     </div>
   );
 }
