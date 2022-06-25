@@ -2,10 +2,16 @@ import React, { useState, useEffect } from "react";
 import Identity from "@arc-publishing/sdk-identity";
 
 function PerfilPage() {
+  const urlBase = "https://api-sandbox.elcomercio.pe";
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [dataRegistro, setDataRegistro] = useState({});
-
+  useEffect(() => {
+    document.title = "Perfil | Tromecito";
+  }, []);
+  useEffect(() => {
+    Identity.apiOrigin = urlBase;
+  });
   useEffect(() => {
     Identity.getUserProfile().then((res) => {
       const {

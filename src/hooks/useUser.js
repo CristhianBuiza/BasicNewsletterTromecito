@@ -1,33 +1,47 @@
-import { useCallback, useContext, useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Identity from "@arc-publishing/sdk-identity";
 import Context from "../context/UserContext";
 import loginService from "../services/login";
 export default function useUser() {
-  const { jwt, setJwt } = useContext(Context);
+  const { isLogged, setIsLogged } = useContext(Context);
+  const navigate = useNavigate();
   const [state, setState] = useState({ loading: false, error: true });
-  const login = useCallback(
-    (email, password) => {
-      setState({ loading: true, error: false });
-      loginService(email, password)
-        .then((accessToken) => {
-          window.sessionStorage.setItem("jwt", accessToken);
-          setState({ loading: true, error: "" });
-          setJwt(accessToken);
-        })
-        .catch(({ message }) => {
-          window.sessionStorage.removeItem("jwt");
-          setState({ loading: false, error: message });
-          console.log(message);
-        });
-    },
-    [setJwt]
-  );
-  const logout = useCallback(() => {
-    window.sessionStorage.removeItem("jwt");
-    setJwt("");
-  }, [setJwt]);
+  const handleLogged = () => {
+    Identity.isLoggedIn()
+      .then((res) => {
+        if (res === true) {
+          setState({ loading: true, error: false });
+          setIsLogged(true);
+        }
+      })
+      .then(() => {
+        navigate("/");
+      })
+      .catch((err) => {
+        setIsLogged(false);
+        setState({ loading: false, error: err });
+      });
+  };
+  const login = (email, password) => {
+    loginService(email, password)
+      .then(() => {
+        handleLogged();
+      })
+      .catch(({ message }) => {
+        setState({ loading: false, error: message });
+        console.log(message);
+      });
+  };
+  const logout = () => {
+    Identity.logout().then(() => {
+      setState({ loading: false, error: false });
+      setIsLogged(false);
+    });
+  };
 
   return {
-    isLogged: Boolean(jwt),
+    isLogged: Boolean(isLogged),
     isLogingLoading: state.loading,
     isLogingError: state.error,
     login,
