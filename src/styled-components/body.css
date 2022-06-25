@@ -111,6 +111,46 @@
     font-size: 14px;
 }
 
+/*estilos newslist*/
+
+.rowList{
+    display:flex;
+    flex-wrap: wrap;
+    
+}
+.columna-newsList{
+
+    /*background-color:rgb(114, 114, 17);*/
+   /* background-color:#e4dede;*/
+    width: 30%;
+    height: 82%;
+    margin:30px 16px;
+    padding: 10px 25px;
+}
+.cardList{
+    width:100%;
+    margin:0%;                                           
+    height:98%;
+    /*background-color:orange;*/
+}
+.card-img-list{
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.card-body-list{
+    /*background-color: blue;*/
+    width: 100%;
+    display:flex; 
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.card-body-list div{
+    margin-top:20px;
+}
+
+
 @media (max-width: 1298px){
     .card-body-related{
         height:130px;
@@ -137,9 +177,29 @@
         height:150px;
         
     }
+    .columna-newsList{
+        
+        width: 30%;
+        margin: 0px 10px;
+        
+    }
+    .rowList{
+        margin-left: 30px;
+    }
     
 
 }
+
+@media(max-width:1099px){
+    .rowList{
+        flex-wrap: wrap;
+        
+    }
+    .columna-newsList{
+        width:46%;
+    }
+}
+
 @media(max-width:862px){
     .conten-newsrelated{
         width: 90%;
@@ -152,50 +212,36 @@
         height:135px;
         
     }
+    .columna-newsList{
+        width:70%;
+    }
+    .rowList{
+        justify-content:center;
+    }
+    
 }
 @media(max-width:646px){
     .card-body-related{
         height:100px;
     }
+    .columna-newsList{
+        width:80%;
+        height:450px;
+        padding:40px 10px;
+        overflow: hidden;
+    }
+    .card-img-list{
+        margin-bottom:-10px;
+        
+    }
+    .title-NewsList{
+        /*background-color:yellow;*/
+        margin-bottom: -10px;
+    }
+  
 }
 
 
-/*estilos newslist*/
 
-.rowList{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-.columna-newsList{
 
-    /*background-color:rgb(114, 114, 17);*/
-    background-color:#e4dede;
-    width: 30%;
-    height: 82%;
-    margin:30px 20px;
-    padding: 10px 10px;
-}
-.cardList{
-    width:100%;
-    margin:0%;                                           
-    height:98%;
-    /*background-color:orange;*/
-}
-.card-img-list{
-    width: 100%;
-    margin-bottom: 5px;
-}
-
-.card-body-list{
-    /*background-color: blue;*/
-    width: 100%;
-    display:flex; 
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-.card-body-list div{
-    margin-top:20px;
-}
 
