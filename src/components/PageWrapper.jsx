@@ -53,11 +53,11 @@ const PageWrapper = ({ children }) => {
                 Home
               </Link>
             </li>
-            <li onClick={changeStyle}>
+            <button onClick={changeStyle}>
               <Link className="navigation-link" to="/about">
                 About
               </Link>
-            </li>
+            </button>
 
             <li>
               <span className="icono">
