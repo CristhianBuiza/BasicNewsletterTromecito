@@ -4,7 +4,7 @@ import {useState} from 'react';
 
 
 const NewsMain = ({data}) => {
-console.log("news",data);
+
 const url = data.articles[0].url;
  const redirect = ()=>{
    

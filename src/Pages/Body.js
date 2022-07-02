@@ -12,6 +12,51 @@ import Loader from "../components/Loader";
 const Body = () => {
   const [db, setDb] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const [datitos,setDatos] = useState([]);
+
+
+
+  useEffect(() => {
+    let arrayNew=[];
+    for(let i=4;i<db.totalResults; i++){
+      arrayNew.push(db.articles[i]);
+    }
+    setDatos(arrayNew);
+    
+    console.log("nuevoArray",arrayNew);
+
+  },[db]);
+
+  /*...................................................*/
+  useEffect(() => {
+      const fetchData = async () => {
+        let url =
+          "https://newsapi.org/v2/top-headlines?q=elon&apiKey=dcc618b794924da2bdb6f2fbbd2f45ce";
+
+        setLoading(true);
+
+        const [newData] = await Promise.all([helpHttp().get(url)]);
+        setDb(newData);
+        
+        setLoading(false);
+        
+        console.log("fechh",newData);
+      };
+
+      fetchData();
+      
+    
+  }, []);
+  /*--------------------------------------------------*/
+
+  
+
+  
+  console.log("datoPasado", db);
+  console.log("datosarray",datitos);
+  
+=======
   const [datitos, setDatos] = useState([]);
 
   useEffect(() => {
@@ -47,6 +92,7 @@ const Body = () => {
   console.log("datoPasado", db);
   console.log("datosarray", datitos);
 
+
   return (
     <div className="container-main">
       <div className="container">
@@ -65,17 +111,7 @@ const Body = () => {
           </div>
         </div>
 
-        {/* <div className="rowList">
-          {datitos.length === 0 ? (
-            <Loader />
-          ) : (
-            datitos.map((item, index) => (
-              <NewsList key={index} registros={item} />
-            ))
-          )}
 
-
-        </div> */}
       </div>
     </div>
   );
