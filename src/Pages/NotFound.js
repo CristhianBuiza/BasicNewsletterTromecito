@@ -1,3 +1,4 @@
+
 import React from 'react';
 import "../styled-components/NotFound.css";
 
@@ -16,7 +17,7 @@ const NotFound = () => {
       </div>
     </div>
     
-  )
+
 }
 
 export default NotFound

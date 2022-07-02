@@ -1,0 +1,21 @@
+#container {
+  margin: 30px auto;
+  max-width: 400px;
+  padding: 20px;
+}
+.icon {
+  /* center */
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+h4,
+h5,
+p {
+  line-height: 1.5rem;
+  text-align: center;
+}
+h5 {
+  padding: 10px;
+  font-size: 2rem;
+}
