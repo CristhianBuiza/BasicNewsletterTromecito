@@ -12,12 +12,12 @@ import PageWrapper from "./components/PageWrapper";
 import Body from "./Pages/Body";
 import NotFound from "./Pages/NotFound";
 import { UserContextProvider } from "./context/UserContext";
+import PagoPage from "./Pages/PagoPage";
+import ConfirmacionPage from "./Pages/ConfirmacionPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-
   <UserContextProvider>
-
     <BrowserRouter>
       <Routes>
         <Route
@@ -55,9 +55,18 @@ root.render(
         <Route path="/profile" element={<PerfilPage />} />
         <Route path="/Registro" element={<RegistroPage />} />
         <Route path="/forget/password" element={<OlvidePassword />} />
+        <Route
+          path="/DatosPago"
+          element={
+            <>
+              <PageWrapper>
+                <PagoPage />
+              </PageWrapper>
+            </>
+          }
+        />
+        <Route path="/Confirmacion" element={<ConfirmacionPage />} />
       </Routes>
     </BrowserRouter>
-
   </UserContextProvider>
-
 );
